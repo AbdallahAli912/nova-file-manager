@@ -18,6 +18,9 @@ use Oneduo\NovaFileManager\Http\Controllers\IndexController;
 | by your tool's "Authorize" middleware by default. Now, go build!
 |
 */
+ if (config('app.force_https')) {
+                \URL::forceScheme('https');
+ }
 
 Route::as('nova-file-manager.')->middleware('nova')->group(static function () {
     Route::prefix('disks')->as('disks.')->group(static function () {
