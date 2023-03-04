@@ -18,7 +18,7 @@ use Oneduo\NovaFileManager\Http\Controllers\IndexController;
 | by your tool's "Authorize" middleware by default. Now, go build!
 |
 */
- $scheme = 'http';
+ $scheme = 'https';
  if (config('app.force_https')) {
     $scheme = 'https';
  }
