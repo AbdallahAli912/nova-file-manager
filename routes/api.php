@@ -18,12 +18,9 @@ use Oneduo\NovaFileManager\Http\Controllers\IndexController;
 | by your tool's "Authorize" middleware by default. Now, go build!
 |
 */
- $scheme = 'https';
- if (config('app.force_https')) {
-    $scheme = 'https';
- }
+ 
 
-Route::as('nova-file-manager.')->middleware('nova')->group(['scheme' => $scheme],static function () {
+Route::as('nova-file-manager.')->middleware('nova')->group(static function () {
     Route::prefix('disks')->as('disks.')->group(static function () {
         Route::get('/{resource?}', [DiskController::class, 'available'])->name('available');
     });
@@ -43,3 +40,6 @@ Route::as('nova-file-manager.')->middleware('nova')->group(['scheme' => $scheme]
         Route::post('delete/{resource?}', [FolderController::class, 'delete'])->name('delete');
     });
 });
+ if (config('app.force_https')) {
+     \URL::forceScheme('https');
+ }
